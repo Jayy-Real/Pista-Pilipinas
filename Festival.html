@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pista Pilipinas | Festivals</title>
+
+    <style>
+        body
+        {
+            font-family: sans-serif;
+            background-color: #0e1626;
+            color: #eef2f7;
+        }
+
+        a
+        {
+            text-decoration: none;
+            color: #9fb0c8;
+        }
+
+        a:focus-visible
+        {
+            outline: 3px solid #f2a900;
+            outline-offset: 2px;
+        }
+
+        nav
+        {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+
+            border-bottom: 1px solid #25344f;
+        }
+
+        nav a
+        {
+            padding: 15px;
+            border-radius: 64px;
+            transition-property: transform, background-color, color;
+            transition-duration: 450ms;
+            transition-timing-function: ease;
+        }
+
+        nav a:hover
+        {
+            color: #eef2f7;
+            background-color: rgba(159, 176, 200, 0.3);
+            transform: translateY(-5px);
+        }
+
+        nav .ActiveLink
+        {
+            color: #eef2f7;
+            background-color: rgba(159, 176, 200, 0.3);
+        }
+
+        #Logo
+        {
+            display: flex;
+            margin-right: auto;
+        }
+
+        #HeaderPista
+        {
+            color: white;
+            margin: 5px 0px 5px 5px;
+        }
+
+        #HeaderH1
+        {
+            color: #d62839;
+            margin: 5px 5px 5px 0px;
+            transition-property: transform;
+            transition-duration: 450ms;
+            transition-timing-function: ease;
+        }
+
+        #HeaderH1:hover
+        {
+            transform: rotate(-10deg) scale(1.5);
+        }
+
+        main
+        {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0px auto;
+            padding: 20px 20px 40px 20px;
+            animation: appear 0.5s ease;
+        }
+
+        @keyframes appear
+        {
+            from
+            {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to
+            {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes ColorChange
+        {
+            0%
+            {
+                color: #d62839;
+            }
+
+            50%
+            {
+                color: #f2a900;
+            }
+
+            80%
+            {
+                color: #0b7285;
+            }
+
+            100%
+            {
+                color: #d62839;
+            }
+        }
+
+        #FestivalsTitle
+        {
+            font-size: 60px;
+            letter-spacing: -3px;
+            margin: 10px 0px;
+            animation: ColorChange 10s ease-in-out infinite;
+        }
+
+        #FestivalsP
+        {
+            color: #9fb0c8;
+            font-size: 18px;
+            line-height: 1.5;
+            max-width: 600px;
+            text-align: center;
+            margin: 0px 0px 30px 0px;
+        }
+
+        #FestivalGrid
+        {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(285px, 1fr));
+            gap: 18px;
+            width: 100%;
+        }
+
+        .FestivalCard
+        {
+            position: relative;
+            display: block;
+            overflow: hidden;
+            padding: 25px 22px 20px 22px;
+            border: 1px solid #25344f;
+            border-radius: 22px 22px 22px 4px;
+            background-color: #162238;
+            transition-property: transform, box-shadow;
+            transition-duration: 450ms;
+            transition-timing-function: ease;
+        }
+
+        .FestivalCard::before
+        {
+            content: "";
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            right: 0px;
+            height: 6px;
+            background-color: var(--CardColor);
+            transition-property: height;
+            transition-duration: 450ms;
+            transition-timing-function: ease;
+        }
+
+        .FestivalCard:hover
+        {
+            transform: translateY(-8px) rotate(-0.6deg);
+            box-shadow: 0 20px 40px -16px var(--CardColor);
+        }
+
+        .FestivalCard:hover::before
+        {
+            height: 14px;
+        }
+
+        .CardIcon
+        {
+            display: inline-block;
+            font-size: 40px;
+            transition-property: transform;
+            transition-duration: 450ms;
+            transition-timing-function: ease;
+        }
+
+        .FestivalCard:hover .CardIcon
+        {
+            transform: scale(1.3) rotate(12deg);
+        }
+
+        .CardMonth
+        {
+            display: block;
+            margin-top: 10px;
+            color: #9fb0c8;
+            font-size: 14px;
+        }
+
+        .CardName
+        {
+            margin: 4px 0px;
+            color: #eef2f7;
+            font-size: 26px;
+        }
+
+        .CardText
+        {
+            margin: 6px 0px 12px 0px;
+            color: #9fb0c8;
+            line-height: 1.5;
+        }
+
+        .CardPlace
+        {
+            display: block;
+            color: #9fb0c8;
+            font-size: 14px;
+        }
+
+        .CardLink
+        {
+            display: inline-block;
+            margin-top: 14px;
+            border-bottom: 2px solid var(--CardColor);
+            color: #eef2f7;
+            font-weight: bold;
+            transition-property: transform;
+            transition-duration: 450ms;
+            transition-timing-function: ease;
+        }
+
+        .FestivalCard:hover .CardLink
+        {
+            transform: translateX(6px);
+        }
+
+        footer
+        {
+            color: #eef2f7;
+            padding: 20px 10px 10px 10px;
+            border-top: 1px solid #25344f;
+            text-align: center;
+        }
+
+        @media (max-width: 600px)
+        {
+            #FestivalsTitle
+            {
+                font-size: 40px;
+                letter-spacing: -2px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div ID="Logo">
+                <h1 ID="HeaderPista">Pista</h1><h1 ID="HeaderH1">Pilipinas</h1>
+            </div>
+
+            <a href="http://127.0.0.1:5500/12th_Website/Main.html">Home</a>
+            <a href="http://127.0.0.1:5500/12th_Website/Calendar.html">Calendar</a>
+            <a class="ActiveLink" href="http://127.0.0.1:5500/12th_Website/Festival.html">Festivals</a>
+            <a href="http://127.0.0.1:5500/12th_Website/History.html">History</a>
+            <a href="http://127.0.0.1:5500/12th_Website/Gallery.html">Gallery</a>
+        </nav>
+    </header>
+
+    <main>
+        <h1 ID="FestivalsTitle">All Festivals</h1>
+
+        <p ID="FestivalsP">Your Ultimate Guide to Exploring the Philippines’ Biggest and Most Colorful Festivals!</p>
+
+        <div ID="FestivalGrid">
+            <a class="FestivalCard" href="Guide.html?festival=Sinulog" style="--CardColor: #d62839">
+                <span class="CardIcon">🥁</span>
+                <span class="CardMonth">January</span>
+                <h2 class="CardName">Sinulog Festival</h2>
+                <p class="CardText">Drums, devotion and dance for the Santo Niño.</p>
+                <span class="CardPlace">📍 Cebu City, Central Visayas</span>
+                <span class="CardLink">Open festival guide</span>
+            </a>
+
+            <a class="FestivalCard" href="Guide.html?festival=Panagbenga" style="--CardColor: #e0559c">
+                <span class="CardIcon">🌼</span>
+                <span class="CardMonth">February–March</span>
+                <h2 class="CardName">Panagbenga Festival</h2>
+                <p class="CardText">A month-long bloom of flower floats in the City of Pines.</p>
+                <span class="CardPlace">📍 Baguio City, Cordillera</span>
+                <span class="CardLink">Open festival guide</span>
+            </a>
+
+            <a class="FestivalCard" href="Guide.html?festival=Moriones" style="--CardColor: #7a3e9d">
+                <span class="CardIcon">🎭</span>
+                <span class="CardMonth">Holy Week / March–April</span>
+                <h2 class="CardName">Moriones Festival</h2>
+                <p class="CardText">Masked Roman soldiers roam the island during Holy Week.</p>
+                <span class="CardPlace">📍 Marinduque, MIMAROPA</span>
+                <span class="CardLink">Open festival guide</span>
+            </a>
+
+            <a class="FestivalCard" href="Guide.html?festival=Pahiyas" style="--CardColor: #2f9e44">
+                <span class="CardIcon">🌾</span>
+                <span class="CardMonth">May</span>
+                <h2 class="CardName">Pahiyas Festival</h2>
+                <p class="CardText">Houses dressed in rice wafers, fruit and vegetables for a bountiful harvest.</p>
+                <span class="CardPlace">📍 Lucban, Quezon</span>
+                <span class="CardLink">Open festival guide</span>
+            </a>
+
+            <a class="FestivalCard" href="Guide.html?festival=Kadayawan" style="--CardColor: #f28c00">
+                <span class="CardIcon">🌺</span>
+                <span class="CardMonth">August</span>
+                <h2 class="CardName">Kadayawan Festival</h2>
+                <p class="CardText">Davao’s cultural diversity, Indigenous heritage and harvest.</p>
+                <span class="CardPlace">📍 Davao City, Mindanao</span>
+                <span class="CardLink">Open festival guide</span>
+            </a>
+
+            <a class="FestivalCard" href="Guide.html?festival=MassKara" style="--CardColor: #0b7285">
+                <span class="CardIcon">😊</span>
+                <span class="CardMonth">October</span>
+                <h2 class="CardName">MassKara Festival</h2>
+                <p class="CardText">Smiling masks, colorful costumes and street performances.</p>
+                <span class="CardPlace">📍 Bacolod City, Western Visayas</span>
+                <span class="CardLink">Open festival guide</span>
+            </a>
+        </div>
+    </main>
+
+    <footer>© 2026 Jayy Incorporated. All Rights Reserved.</footer>
+</body>
+</html>

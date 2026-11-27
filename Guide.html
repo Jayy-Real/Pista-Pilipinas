@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pista Pilipinas | Festival Guide</title>
+
+    <style>
+        body
+        {
+            font-family: sans-serif;
+            background-color: #0e1626;
+            color: #eef2f7;
+        }
+
+        a
+        {
+            text-decoration: none;
+            color: #9fb0c8;
+        }
+
+        a:focus-visible
+        {
+            outline: 3px solid #f2a900;
+            outline-offset: 2px;
+        }
+
+        nav
+        {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+
+            border-bottom: 1px solid #25344f;
+        }
+
+        nav a
+        {
+            padding: 15px;
+            border-radius: 64px;
+            transition-property: transform, background-color, color;
+            transition-duration: 450ms;
+            transition-timing-function: ease;
+        }
+
+        nav a:hover
+        {
+            color: #eef2f7;
+            background-color: rgba(159, 176, 200, 0.3);
+            transform: translateY(-5px);
+        }
+
+        nav .ActiveLink
+        {
+            color: #eef2f7;
+            background-color: rgba(159, 176, 200, 0.3);
+        }
+
+        #Logo
+        {
+            display: flex;
+            margin-right: auto;
+        }
+
+        #HeaderPista
+        {
+            color: white;
+            margin: 5px 0px 5px 5px;
+        }
+
+        #HeaderH1
+        {
+            color: #d62839;
+            margin: 5px 5px 5px 0px;
+            transition-property: transform;
+            transition-duration: 450ms;
+            transition-timing-function: ease;
+        }
+
+        #HeaderH1:hover
+        {
+            transform: rotate(-10deg) scale(1.5);
+        }
+
+        main
+        {
+            max-width: 900px;
+            margin: 0px auto;
+            padding: 20px 20px 40px 20px;
+            animation: appear 0.5s ease;
+        }
+
+        @keyframes appear
+        {
+            from
+            {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to
+            {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes PinPulse
+        {
+            from
+            {
+                transform: scale(0.6);
+                opacity: 0.9;
+            }
+
+            to
+            {
+                transform: scale(3);
+                opacity: 0;
+            }
+        }
+
+        #GuideBanner
+        {
+            position: relative;
+            overflow: hidden;
+            padding: 30px;
+            border-radius: 30px 30px 30px 6px;
+            color: white;
+            background: linear-gradient(135deg, var(--GuideColor), color-mix(in srgb, var(--GuideColor) 45%, #000000));
+        }
+
+        #GuideBanner small
+        {
+            font-size: 14px;
+        }
+
+        #GuideBanner p
+        {
+            margin: 4px 0px;
+        }
+
+        #BannerTitle
+        {
+            font-size: 56px;
+            letter-spacing: -2px;
+            margin: 6px 0px;
+        }
+
+        .TwoColumns
+        {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 18px;
+            margin-top: 18px;
+        }
+
+        .GuideBox
+        {
+            padding: 20px;
+            border: 1px solid #25344f;
+            border-radius: 20px;
+            background-color: #162238;
+            transition-property: transform, box-shadow;
+            transition-duration: 450ms;
+            transition-timing-function: ease;
+        }
+
+        .GuideBox:hover
+        {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px -16px var(--GuideColor);
+        }
+
+        .GuideBox h2
+        {
+            font-size: 20px;
+            margin: 0px 0px 12px 0px;
+        }
+
+        .GuideBox p
+        {
+            color: #eef2f7;
+            line-height: 1.5;
+            margin: 10px 0px;
+        }
+
+        #Timeline
+        {
+            list-style: none;
+            margin: 0px;
+            padding: 0px;
+            border-left: 3px solid #25344f;
+        }
+
+        #Timeline li
+        {
+            position: relative;
+            padding: 5px 0px 15px 20px;
+            transition-property: transform;
+            transition-duration: 450ms;
+            transition-timing-function: ease;
+        }
+
+        #Timeline li:hover
+        {
+            transform: translateX(6px);
+        }
+
+        #Timeline b
+        {
+            display: block;
+            color: var(--GuideColor);
+        }
+
+        #GuideMap
+        {
+            display: block;
+            width: 100%;
+            max-height: 360px;
+            border-radius: 14px;
+            background-color: #0d2131;
+        }
+
+        #Land
+        {
+            fill: #25344f;
+            stroke: #9fb0c8;
+            stroke-width: 0.6;
+            transition-property: fill;
+            transition-duration: 450ms;
+            transition-timing-function: ease;
+        }
+
+        #GuideMap:hover #Land
+        {
+            fill: color-mix(in srgb, var(--GuideColor) 28%, #25344f);
+        }
+
+        #MapPin
+        {
+            fill: var(--GuideColor);
+            stroke: white;
+            stroke-width: 2;
+        }
+
+        #MapPulse
+        {
+            fill: var(--GuideColor);
+            transform-box: fill-box;
+            transform-origin: center;
+            animation: PinPulse 1.6s ease-out infinite;
+        }
+
+        #MapButton
+        {
+            display: inline-block;
+            padding: 10px 18px;
+            border-radius: 64px;
+            background-color: white;
+            color: black;
+            font-weight: bold;
+            transition-property: transform, box-shadow, background-color, color;
+            transition-duration: 450ms;
+            transition-timing-function: ease;
+        }
+
+        #MapButton:hover
+        {
+            background-color: var(--GuideColor);
+            color: white;
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.7);
+            transform: translateY(-5px);
+        }
+
+        #GuideNav
+        {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 18px;
+        }
+
+        #GuideNav a
+        {
+            padding: 10px 16px;
+            border: 1px solid #25344f;
+            border-radius: 64px;
+            color: #eef2f7;
+            transition-property: transform, background-color;
+            transition-duration: 450ms;
+            transition-timing-function: ease;
+        }
+
+        #GuideNav a:hover
+        {
+            background-color: var(--GuideColor);
+            transform: translateY(-3px);
+        }
+
+        footer
+        {
+            color: #eef2f7;
+            padding: 20px 10px 10px 10px;
+            border-top: 1px solid #25344f;
+            text-align: center;
+        }
+
+        @media (max-width: 800px)
+        {
+            .TwoColumns
+            {
+                grid-template-columns: 1fr;
+            }
+
+            #BannerTitle
+            {
+                font-size: 36px;
+                letter-spacing: -1px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div ID="Logo">
+                <h1 ID="HeaderPista">Pista</h1><h1 ID="HeaderH1">Pilipinas</h1>
+            </div>
+
+            <a href="http://127.0.0.1:5500/12th_Website/Main.html">Home</a>
+            <a href="http://127.0.0.1:5500/12th_Website/Calendar.html">Calendar</a>
+            <a class="ActiveLink" href="http://127.0.0.1:5500/12th_Website/Festivals.html">Festivals</a>
+            <a href="http://127.0.0.1:5500/12th_Website/History.html">History</a>
+            <a href="http://127.0.0.1:5500/12th_Website/Gallery.html">Gallery</a>
+        </nav>
+    </header>
+
+    <main ID="GuideMain">
+        <div ID="GuideBanner">
+            <small ID="BannerDates"></small>
+            <h1 ID="BannerTitle"></h1>
+            <p ID="BannerPlace"></p>
+        </div>
+
+        <div class="TwoColumns">
+            <div class="GuideBox">
+                <h2>Schedule</h2>
+                <ul ID="Timeline"></ul>
+            </div>
+
+            <div class="GuideBox">
+                <h2>Venue map</h2>
+
+                <svg ID="GuideMap" viewBox="0 0 300 420" role="img" aria-label="Map of the Philippines with a pin on the venue">
+                    <g ID="Land">
+                        <polygon points="102,18 156,15 159,75 138,105 147,141 213,153 210,189 186,180 150,153 117,159 108,135 90,96 99,60"/>
+                        <polygon points="99,165 135,168 126,204 102,192"/>
+                        <polygon points="6,315 69,231 78,240 15,321"/>
+                        <polygon points="147,216 183,222 183,252 156,258"/>
+                        <polygon points="162,246 192,255 186,297 165,285"/>
+                        <polygon points="189,234 210,255 192,285 186,261"/>
+                        <polygon points="219,195 261,201 258,246 228,231"/>
+                        <polygon points="219,234 240,231 243,273 222,264"/>
+                        <polygon points="150,330 195,312 240,279 282,291 285,345 270,381 252,396 210,375 180,348"/>
+                    </g>
+                    <circle ID="MapPulse" r="8"/>
+                    <circle ID="MapPin" r="6"/>
+                </svg>
+
+                <p ID="VenueText"></p>
+                <a ID="MapButton" target="_blank" rel="noopener" href="">Open in Google Maps</a>
+            </div>
+        </div>
+
+        <div class="TwoColumns">
+            <div class="GuideBox">
+                <h2>🎟️ Tickets and access</h2>
+                <p ID="TicketsText"></p>
+            </div>
+
+            <div class="GuideBox">
+                <h2>🍽️ Try</h2>
+                <p ID="TryText"></p>
+            </div>
+        </div>
+
+        <div ID="GuideNav">
+            <a ID="PreviousLink" href=""></a>
+            <a ID="NextLink" href=""></a>
+        </div>
+    </main>
+
+    <footer>© 2026 Jayy Incorporated. All Rights Reserved.</footer>
+
+    <script>
+        const festivals =
+        [
+            {
+                id: "Sinulog",
+                name: "Sinulog Festival",
+                icon: "🥁",
+                color: "#d62839",
+                dates: "Jan 8–17, 2027 (projected)",
+                place: "Cebu City, Central Visayas",
+                schedule:
+                [
+                    ["Jan 8", "Opening and Walk with Mary"],
+                    ["Jan 8–14", "Novena Masses at the Basilica"],
+                    ["Jan 15–16", "Traslación and fluvial procession"],
+                    ["Jan 17", "Sinulog Grand Parade"]
+                ],
+                venue: "Basilica Minore del Santo Niño and downtown Cebu City. Routes can change yearly.",
+                pinX: 207,
+                pinY: 260,
+                mapUrl: "https://www.google.com/maps/search/?api=1&query=10.32,123.89",
+                tickets: "Street viewing is free. Reserved grandstand seats are usually sold by the organizers, so book early.",
+                food: "Lechon and puso (hanging rice)."
+            },
+            {
+                id: "Panagbenga",
+                name: "Panagbenga Festival",
+                icon: "🌼",
+                color: "#e0559c",
+                dates: "Feb 1 – Mar 7, 2027 (projected)",
+                place: "Baguio City, Cordillera",
+                schedule:
+                [
+                    ["Feb 1", "Opening parade"],
+                    ["Weekends", "Flower shows and Session Road in Bloom"],
+                    ["Feb 27", "Grand Street Dance Parade"],
+                    ["Feb 28", "Grand Float Parade"]
+                ],
+                venue: "Session Road, Burnham Park and the Baguio city center.",
+                pinX: 108,
+                pinY: 78,
+                mapUrl: "https://www.google.com/maps/search/?api=1&query=16.41,120.59",
+                tickets: "Street routes are free to watch. Grandstand seats for the parades are typically sold in advance.",
+                food: "Strawberry taho and fresh Benguet produce."
+            },
+            {
+                id: "Moriones",
+                name: "Moriones Festival",
+                icon: "🎭",
+                color: "#7a3e9d",
+                dates: "Holy Week, Mar 21–28, 2027 (projected)",
+                place: "Marinduque, MIMAROPA",
+                schedule:
+                [
+                    ["Mar 21", "Palm Sunday: first morions appear"],
+                    ["Mar 22–27", "Morions roam Boac, Mogpog and Gasan"],
+                    ["Mar 28", "Easter: Pugutan, the beheading of Longinus"]
+                ],
+                venue: "Boac, Mogpog and Gasan. Ferries and rooms fill early.",
+                pinX: 145,
+                pinY: 167,
+                mapUrl: "https://www.google.com/maps/search/?api=1&query=13.45,121.84",
+                tickets: "Free to watch. Street scenes and the Pugutan staging are open to the public.",
+                food: "Local kakanin and fresh seafood."
+            },
+            {
+                id: "Pahiyas",
+                name: "Pahiyas Festival",
+                icon: "🌾",
+                color: "#2f9e44",
+                dates: "May 13–15, 2027 (projected)",
+                place: "Lucban, Quezon",
+                schedule:
+                [
+                    ["May 13–14", "Final house decorating"],
+                    ["May 15, dawn", "Mass and procession of San Isidro Labrador"],
+                    ["May 15", "Open-house viewing along decorated streets"]
+                ],
+                venue: "Lucban town center around the San Isidro Labrador Church. Streets close to vehicles.",
+                pinX: 137,
+                pinY: 147,
+                mapUrl: "https://www.google.com/maps/search/?api=1&query=14.11,121.55",
+                tickets: "Free. Houses are open to view and many sell local food and souvenirs.",
+                food: "Pancit habhab, Lucban longganisa and kiping chips."
+            },
+            {
+                id: "Kadayawan",
+                name: "Kadayawan Festival",
+                icon: "🌺",
+                color: "#f28c00",
+                dates: "Aug 13–22, 2027 (projected)",
+                place: "Davao City, Mindanao",
+                schedule:
+                [
+                    ["Aug 13", "Opening and tribal village setup"],
+                    ["Aug 14–20", "Fruit and flower displays, trade fair, cultural shows"],
+                    ["Aug 21", "Indak-Indak sa Dalan street dancing"],
+                    ["Aug 22", "Pamulak sa Kadayawan floral parade"]
+                ],
+                venue: "Magsaysay Park, Rizal Park and Davao City’s main avenues.",
+                pinX: 258,
+                pinY: 358,
+                mapUrl: "https://www.google.com/maps/search/?api=1&query=7.07,125.61",
+                tickets: "Most events are free. Selected shows and grandstand areas may be ticketed.",
+                food: "Fresh durian, pomelo and grilled tuna."
+            },
+            {
+                id: "MassKara",
+                name: "MassKara Festival",
+                icon: "😊",
+                color: "#0b7285",
+                dates: "Oct 1–24, 2027 (projected)",
+                place: "Bacolod City, Western Visayas",
+                schedule:
+                [
+                    ["Early Oct", "Opening and festival queen pageant"],
+                    ["All month", "Food fairs and Lacson Street night market"],
+                    ["Oct 16–17", "Street dance competition weekend"],
+                    ["Oct 19", "Bacolod Charter Day"]
+                ],
+                venue: "Bacolod Public Plaza, Lacson Street and the city center.",
+                pinX: 179,
+                pinY: 250,
+                mapUrl: "https://www.google.com/maps/search/?api=1&query=10.68,122.95",
+                tickets: "Street dance viewing is free. Concerts and special nights may need tickets.",
+                food: "Chicken inasal and piaya."
+            }
+        ];
+
+        const params = new URLSearchParams(window.location.search);
+        let index = festivals.findIndex((festival) =>
+        {
+            return festival.id === params.get("festival");
+        });
+
+        if (index === -1)
+        {
+            index = 0;
+        }
+
+        const current = festivals[index];
+        const previous = festivals[(index + festivals.length - 1) % festivals.length];
+        const next = festivals[(index + 1) % festivals.length];
+        let timeline = "";
+
+        current.schedule.forEach((item) =>
+        {
+            timeline += `<li><b>${item[0]}</b>${item[1]}</li>`;
+        });
+
+        document.title = `${current.name} | Pista Pilipinas`;
+        document.getElementById("GuideMain").style.setProperty("--GuideColor", current.color);
+        document.getElementById("BannerDates").textContent = current.dates;
+        document.getElementById("BannerTitle").textContent = current.name;
+        document.getElementById("BannerPlace").textContent = `📍 ${current.place}`;
+        document.getElementById("Timeline").innerHTML = timeline;
+        document.getElementById("VenueText").textContent = current.venue;
+        document.getElementById("MapButton").href = current.mapUrl;
+        document.getElementById("TicketsText").textContent = current.tickets;
+        document.getElementById("TryText").textContent = current.food;
+        document.getElementById("PreviousLink").textContent = `← ${previous.id}`;
+        document.getElementById("PreviousLink").href = `Guide.html?festival=${previous.id}`;
+        document.getElementById("NextLink").textContent = `${next.id} →`;
+        document.getElementById("NextLink").href = `Guide.html?festival=${next.id}`;
+
+        ["MapPulse", "MapPin"].forEach((id) =>
+        {
+            document.getElementById(id).setAttribute("cx", current.pinX);
+            document.getElementById(id).setAttribute("cy", current.pinY);
+        });
+    </script>
+</body>
+</html>

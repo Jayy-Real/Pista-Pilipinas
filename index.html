@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pista Pilipinas</title>
+
+    <style>
+        body
+        {
+            font-family: sans-serif;
+            background-color: #0e1626;
+        }
+
+        section
+        {
+            display: flex;
+            justify-content: flex-start;
+
+            margin-right: auto;
+        }
+
+        nav
+        {
+            display: flex;
+
+            border-bottom: 1px solid #25344f;
+        }
+
+        nav a
+        {
+            padding: 15px;
+        }
+
+        nav a:hover
+        {
+            color: #eef2f7;
+            background-color: rgba(159, 176, 200, 0.3);
+            border-radius: 64px;
+            transform: translateY(-5px);
+            transition-property: transform;
+            transition-duration: 450ms;
+            transition-timing-function: ease;
+        }
+
+        #HeaderH1:hover
+        {
+            transform: rotate(-10deg) scale(1.5);
+            transition-property: transform;
+            transition-duration: 450ms;
+            transition-timing-function: ease;
+        }
+
+        a
+        {
+            text-decoration: none;
+            color: #9fb0c8;
+        }
+
+        main
+        {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            animation: appear 0.5s ease;
+        }
+
+        @keyframes appear 
+        {
+            from 
+            {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to 
+            {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        #CenterText
+        {
+            font-size: 90px;
+            letter-spacing: -6px;
+            animation: ColorChange 10s ease-in-out infinite;
+            margin-bottom: 10px;
+        }
+
+        #CenterP
+        {
+            color: #9fb0c8;
+            font-size: 20px;
+            width: 600px;
+            line-height: 1.5;
+            margin-top: 10px;
+        }
+
+        @keyframes ColorChange
+        {
+            0% 
+            {
+                color: #d62839;
+            }
+
+            50%
+            {
+                color: #f2a900;
+            }
+
+            80%
+            {
+                color: #0b7285;
+            }
+
+            100%
+            {
+                color: #d62839;
+            }
+        }
+
+        #PSpan
+        {
+            text-align: center;
+        }
+
+        span a
+        {
+            color: black;
+            background-color: white;
+            font-weight: bold;
+            border-radius: 64px;
+            margin: 3px;
+            padding: 10px;
+            text-align: center;
+            display: inline-block;
+        }
+
+        .CenterButton:hover
+        {
+            background-color: #d62839;
+            color: white;
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.7);
+            transform: translateY(-5px);
+            transition-property: transform, box-shadow;
+            transition-duration: 450ms;
+            transition-timing-function: ease;
+        }
+
+        footer
+        {
+            color: #eef2f7;
+            padding: 20px 10px 10px 10px;
+            border-top: 1px solid #25344f;
+            text-align:center;
+        }
+
+        #CenterClock
+        {
+            width: 100%;
+            max-width: 560px;
+            margin: 25px 0px;
+            padding: 20px;
+            box-sizing: border-box;
+            text-align: center;
+            border: 1px solid #25344f;
+            border-radius: 26px;
+            background-color: #162238;
+            transition-property: transform, box-shadow;
+            transition-duration: 450ms;
+            transition-timing-function: ease;
+        }
+
+        #CenterClock:hover
+        {
+            transform: scale(1.03);
+            box-shadow: 0 20px 50px -20px #d62839;
+        }
+
+        #ClockLabel
+        {
+            color: #eef2f7;
+            font-size: 18px;
+        }
+
+        #ClockName
+        {
+            color: #eef2f7;
+            font-weight: bold;
+            text-decoration: underline;
+            transition-property: color;
+            transition-duration: 450ms;
+            transition-timing-function: ease;
+        }
+
+        #ClockName:hover
+        {
+            color: #f2a900;
+        }
+
+        #ClockBoxes
+        {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .ClockBox
+        {
+            flex: 1;
+            max-width: 100px;
+            padding: 10px 4px;
+            border-radius: 16px;
+            background-color: #0e1626;
+        }
+
+        .ClockNumber
+        {
+            display: block;
+            color: #eef2f7;
+            font-size: 40px;
+            font-weight: bold;
+        }
+
+        .ClockUnit
+        {
+            color: #9fb0c8;
+            font-size: 13px;
+        }
+
+                #Bunting
+        {
+            display: flex;
+            justify-content: center;
+            overflow: hidden;
+            height: 52px;
+        }
+
+        .BuntingFlag
+        {
+            width: 36px;
+            height: 48px;
+            flex: none;
+            background-color: #d62839;
+            clip-path: polygon(0 0, 100% 0, 50% 100%);
+            transform-origin: top;
+            animation: sway 3.2s ease-in-out infinite;
+            transition-property: scale, rotate;
+            transition-duration: 300ms;
+            transition-timing-function: ease;
+        }
+
+        .BuntingFlag:nth-child(4n + 2)
+        {
+            background-color: #f2a900;
+            animation-delay: -0.8s;
+        }
+
+        .BuntingFlag:nth-child(4n + 3)
+        {
+            background-color: #0b7285;
+            animation-delay: -1.6s;
+        }
+
+        .BuntingFlag:nth-child(4n)
+        {
+            background-color: #2f9e44;
+            animation-delay: -2.4s;
+        }
+
+        .BuntingFlag:hover
+        {
+            scale: 1.2;
+            rotate: 25deg;
+        }
+
+        @keyframes sway
+        {
+            50%
+            {
+                transform: rotate(7deg);
+            }
+        }
+
+        nav .ActiveLink
+        {
+            color: #eef2f7;
+            background-color: rgba(159, 176, 200, 0.3);
+            border-radius: 64px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <section>
+                <h1 style="color: white; margin: 5px 0px 5px 5px;">Pista</h1><h1 ID="HeaderH1" style="color: #d62839; margin: 5px 5px 5px 0px;">Pilipinas</h1>
+            </section>
+
+            <a class="ActiveLink" href="http://127.0.0.1:5500/12th_Website/Main.html">Home</a>
+            <a href="http://127.0.0.1:5500/12th_Website/Calendar.html">Calendar</a>
+            <a href="http://127.0.0.1:5500/12th_Website/Festival.html">Festivals</a>
+            <a href="http://127.0.0.1:5500/12th_Website/History.html">History</a>
+            <a href="http://127.0.0.1:5500/12th_Website/Gallery.html">Gallery</a>
+        </nav>
+    </header>
+
+        <div ID="Bunting">
+        <div class="BuntingFlag"></div>
+        <div class="BuntingFlag"></div>
+        <div class="BuntingFlag"></div>
+        <div class="BuntingFlag"></div>
+        <div class="BuntingFlag"></div>
+        <div class="BuntingFlag"></div>
+        <div class="BuntingFlag"></div>
+        <div class="BuntingFlag"></div>
+        <div class="BuntingFlag"></div>
+        <div class="BuntingFlag"></div>
+        <div class="BuntingFlag"></div>
+        <div class="BuntingFlag"></div>
+        <div class="BuntingFlag"></div>
+        <div class="BuntingFlag"></div>
+        <div class="BuntingFlag"></div>
+        <div class="BuntingFlag"></div>
+        <div class="BuntingFlag"></div>
+        <div class="BuntingFlag"></div>
+        <div class="BuntingFlag"></div>
+        <div class="BuntingFlag"></div>
+        <div class="BuntingFlag"></div>
+        <div class="BuntingFlag"></div>
+        <div class="BuntingFlag"></div>
+        <div class="BuntingFlag"></div>
+        <div class="BuntingFlag"></div>
+        <div class="BuntingFlag"></div>
+        <div class="BuntingFlag"></div>
+        <div class="BuntingFlag"></div>
+        <div class="BuntingFlag"></div>
+        <div class="BuntingFlag"></div>
+        <div class="BuntingFlag"></div>
+        <div class="BuntingFlag"></div>
+        <div class="BuntingFlag"></div>
+        <div class="BuntingFlag"></div>
+        <div class="BuntingFlag"></div>
+        <div class="BuntingFlag"></div>
+        <div class="BuntingFlag"></div>
+        <div class="BuntingFlag"></div>
+        <div class="BuntingFlag"></div>
+        <div class="BuntingFlag"></div>
+        <div class="BuntingFlag"></div>
+        <div class="BuntingFlag"></div>
+        <div class="BuntingFlag"></div>
+        <div class="BuntingFlag"></div>
+        <div class="BuntingFlag"></div>
+        <div class="BuntingFlag"></div>
+        <div class="BuntingFlag"></div>
+        <div class="BuntingFlag"></div>
+        <div class="BuntingFlag"></div>
+        <div class="BuntingFlag"></div>
+        <div class="BuntingFlag"></div>
+        <div class="BuntingFlag"></div>
+        <div class="BuntingFlag"></div>
+        <div class="BuntingFlag"></div>
+        <div class="BuntingFlag"></div>
+        <div class="BuntingFlag"></div>
+        <div class="BuntingFlag"></div>
+        <div class="BuntingFlag"></div>
+        <div class="BuntingFlag"></div>
+        <div class="BuntingFlag"></div>
+    </div>
+
+    <main>
+        <h1 ID="CenterText">Pista Pilipinas</h1>
+
+        <span ID="PSpan">
+            <p ID="CenterP">Your Ultimate Guide to Discovering the Philippines Biggest Festivals, Their Traditions, and Celebrations!</p>
+        </span>
+
+        <div ID="CenterClock">
+            <div ID="ClockLabel">Next big event: <a ID="ClockName" href="http://127.0.0.1:5500/12th_Website/Calendar.html">loading…</a></div>
+
+            <div ID="ClockBoxes">
+                <div class="ClockBox">
+                    <span class="ClockNumber" ID="ClockDays">00</span>
+                    <span class="ClockUnit">days</span>
+                </div>
+
+                <div class="ClockBox">
+                    <span class="ClockNumber" ID="ClockHours">00</span>
+                    <span class="ClockUnit">hours</span>
+                </div>
+
+                <div class="ClockBox">
+                    <span class="ClockNumber" ID="ClockMinutes">00</span>
+                    <span class="ClockUnit">minutes</span>
+                </div>
+
+                <div class="ClockBox">
+                    <span class="ClockNumber" ID="ClockSeconds">00</span>
+                    <span class="ClockUnit">seconds</span>
+                </div>
+            </div>
+        </div>
+
+        <span ID="CenterButtons">
+            <a class="CenterButton" href="http://127.0.0.1:5500/12th_Website/Festival.html">Browse festivals</a>
+            <a class="CenterButton" href="http://127.0.0.1:5500/12th_Website/Calendar.html">Open calendar</a>
+        </span>
+    </main>
+
+    <footer>© 2026 Jayy Incorporated. All Rights Reserved.</footer>
+
+    <script>
+        const festivals =
+        [
+            {
+                name: "Sinulog",
+                icon: "🥁",
+                peak: "2027-01-17",
+                link: "http://127.0.0.1:5500/12th_Website/Calendar.html"
+            },
+            {
+                name: "Panagbenga",
+                icon: "🌼",
+                peak: "2027-02-28",
+                link: "http://127.0.0.1:5500/12th_Website/Calendar.html"
+            },
+            {
+                name: "Moriones",
+                icon: "🎭",
+                peak: "2027-03-28",
+                link: "http://127.0.0.1:5500/12th_Website/Calendar.html"
+            },
+            {
+                name: "Pahiyas",
+                icon: "🌾",
+                peak: "2027-05-15",
+                link: "http://127.0.0.1:5500/12th_Website/Calendar.html"
+            },
+            {
+                name: "Kadayawan",
+                icon: "🌺",
+                peak: "2027-08-22",
+                link: "http://127.0.0.1:5500/12th_Website/Calendar.html"
+            },
+            {
+                name: "MassKara",
+                icon: "😊",
+                peak: "2027-10-17",
+                link: "http://127.0.0.1:5500/12th_Website/Calendar.html"
+            }
+        ];
+
+        const clockIds = ["ClockDays", "ClockHours", "ClockMinutes", "ClockSeconds"];
+
+        function showClock(values)
+        {
+            clockIds.forEach((id, index) =>
+            {
+                document.getElementById(id).textContent = String(values[index]).padStart(2, "0");
+            });
+        }
+
+        function updateClock()
+        {
+            const now = Date.now();
+            const next = festivals.find((festival) =>
+            {
+                return new Date(festival.peak + "T08:00:00+08:00").getTime() > now;
+            });
+
+            if (next === undefined)
+            {
+                document.getElementById("ClockName").textContent = "Next season’s dates coming soon";
+                showClock([0, 0, 0, 0]);
+                return;
+            }
+
+            const remaining = new Date(next.peak + "T08:00:00+08:00").getTime() - now;
+            const values =
+            [
+                Math.floor(remaining / 86400000),
+                Math.floor(remaining / 3600000) % 24,
+                Math.floor(remaining / 60000) % 60,
+                Math.floor(remaining / 1000) % 60
+            ];
+
+            document.getElementById("ClockName").textContent = `${next.icon} ${next.name}`;
+            document.getElementById("ClockName").href = next.link;
+            showClock(values);
+        }
+
+        updateClock();
+        setInterval(updateClock, 1000);
+    </script>
+</body>
+</html>

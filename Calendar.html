@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pista Pilipinas | Calendar</title>
+
+    <style>
+        body
+        {
+            font-family: sans-serif;
+            background-color: #0e1626;
+            color: #eef2f7;
+        }
+
+        a
+        {
+            text-decoration: none;
+            color: #9fb0c8;
+        }
+
+        a:focus-visible, button:focus-visible
+        {
+            outline: 3px solid #f2a900;
+            outline-offset: 2px;
+        }
+
+        nav
+        {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+
+            border-bottom: 1px solid #25344f;
+        }
+
+        nav a
+        {
+            padding: 15px;
+            border-radius: 64px;
+            transition-property: transform, background-color, color;
+            transition-duration: 450ms;
+            transition-timing-function: ease;
+        }
+
+        nav a:hover
+        {
+            color: #eef2f7;
+            background-color: rgba(159, 176, 200, 0.3);
+            transform: translateY(-5px);
+        }
+
+        nav .ActiveLink
+        {
+            color: #eef2f7;
+            background-color: rgba(159, 176, 200, 0.3);
+        }
+
+        #Logo
+        {
+            display: flex;
+            margin-right: auto;
+        }
+
+        #HeaderPista
+        {
+            color: white;
+            margin: 5px 0px 5px 5px;
+        }
+
+        #HeaderH1
+        {
+            color: #d62839;
+            margin: 5px 5px 5px 0px;
+            transition-property: transform;
+            transition-duration: 450ms;
+            transition-timing-function: ease;
+        }
+
+        #HeaderH1:hover
+        {
+            transform: rotate(-10deg) scale(1.5);
+        }
+
+        main
+        {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0px auto;
+            padding: 20px 20px 40px 20px;
+            animation: appear 0.5s ease;
+        }
+
+        @keyframes appear
+        {
+            from
+            {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to
+            {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes ColorChange
+        {
+            0%
+            {
+                color: #d62839;
+            }
+
+            50%
+            {
+                color: #f2a900;
+            }
+
+            80%
+            {
+                color: #0b7285;
+            }
+
+            100%
+            {
+                color: #d62839;
+            }
+        }
+
+        #CalendarTitle
+        {
+            font-size: 60px;
+            letter-spacing: -3px;
+            margin: 10px 0px;
+            animation: ColorChange 10s ease-in-out infinite;
+        }
+
+        #CalendarP
+        {
+            color: #9fb0c8;
+            font-size: 18px;
+            line-height: 1.5;
+            max-width: 600px;
+            text-align: center;
+            margin: 0px 0px 25px 0px;
+        }
+
+        #CalendarTop
+        {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        #MonthTitle
+        {
+            font-size: 32px;
+            margin: 0px;
+        }
+
+        .ArrowButton
+        {
+            width: 48px;
+            height: 48px;
+            border: 1px solid #25344f;
+            border-radius: 50%;
+            background-color: #162238;
+            color: #eef2f7;
+            font-size: 24px;
+            cursor: pointer;
+            transition-property: transform, background-color, color;
+            transition-duration: 450ms;
+            transition-timing-function: ease;
+        }
+
+        .ArrowButton:hover
+        {
+            background-color: #f2a900;
+            color: #0e1626;
+            transform: scale(1.1);
+        }
+
+        #CalendarGrid
+        {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 6px;
+            width: 100%;
+        }
+
+        .WeekDay
+        {
+            color: #9fb0c8;
+            font-size: 14px;
+            text-align: center;
+            padding-bottom: 4px;
+        }
+
+        .Day
+        {
+            min-width: 0px;
+            min-height: 96px;
+            padding: 8px;
+            overflow: hidden;
+            border: 1px solid #25344f;
+            border-radius: 12px;
+            background-color: #162238;
+            transition-property: transform, box-shadow;
+            transition-duration: 450ms;
+            transition-timing-function: ease;
+        }
+
+        .Day:not(.DayEmpty):hover
+        {
+            transform: scale(1.06);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        .DayEmpty
+        {
+            background-color: transparent;
+            border-style: dashed;
+            opacity: 0.3;
+        }
+
+        .DayNumber
+        {
+            color: #9fb0c8;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .Bar
+        {
+            height: 6px;
+            margin-top: 5px;
+            border-radius: 3px;
+        }
+
+        .Chip
+        {
+            display: block;
+            margin-top: 5px;
+            padding: 3px 6px;
+            overflow: hidden;
+            border: 2px solid;
+            border-radius: 8px;
+            background-color: #0e1626;
+            color: #eef2f7;
+            font-size: 12px;
+            font-weight: bold;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            transition-property: transform, background-color;
+            transition-duration: 450ms;
+            transition-timing-function: ease;
+        }
+
+        .Chip:hover
+        {
+            background-color: rgba(159, 176, 200, 0.3);
+            transform: translateY(-3px);
+        }
+
+        footer
+        {
+            color: #eef2f7;
+            padding: 20px 10px 10px 10px;
+            border-top: 1px solid #25344f;
+            text-align: center;
+        }
+
+        @media (max-width: 600px)
+        {
+            #CalendarTitle
+            {
+                font-size: 40px;
+                letter-spacing: -2px;
+            }
+
+            #MonthTitle
+            {
+                font-size: 24px;
+            }
+
+            .WeekDay
+            {
+                font-size: 11px;
+            }
+
+            .Day
+            {
+                min-height: 60px;
+                padding: 4px;
+            }
+
+            .ChipName
+            {
+                display: none;
+            }
+
+            .Chip
+            {
+                padding: 2px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div ID="Logo">
+                <h1 ID="HeaderPista">Pista</h1><h1 ID="HeaderH1">Pilipinas</h1>
+            </div>
+
+            <a href="http://127.0.0.1:5500/12th_Website/Main.html">Home</a>
+            <a class="ActiveLink" href="http://127.0.0.1:5500/12th_Website/Calendar.html">Calendar</a>
+            <a href="http://127.0.0.1:5500/12th_Website/Festival.html">Festivals</a>
+            <a href="http://127.0.0.1:5500/12th_Website/History.html">History</a>
+            <a href="http://127.0.0.1:5500/12th_Website/Gallery.html">Gallery</a>
+        </nav>
+    </header>
+
+    <main>
+        <h1 ID="CalendarTitle">Festival Calendar</h1>
+
+        <p ID="CalendarP">
+            Your Ultimate Guide to Celebrating the Festivals of the Philippines!
+        </p>
+
+        <div ID="CalendarTop">
+            <button class="ArrowButton" ID="PrevButton" aria-label="Previous month">‹</button>
+            <h2 ID="MonthTitle"></h2>
+            <button class="ArrowButton" ID="NextButton" aria-label="Next month">›</button>
+        </div>
+
+        <div ID="CalendarGrid"></div>
+    </main>
+
+    <footer>© 2026 Jayy Incorporated. All Rights Reserved.</footer>
+
+    <script>
+        const festivals =
+        [
+            {
+                name: "Sinulog",
+                icon: "🥁",
+                color: "#d62839",
+                start: "2027-01-08",
+                end: "2027-01-17",
+                peak: "2027-01-17",
+                link: "http://127.0.0.1:5500/12th_Website/Calendar.html"
+            },
+            {
+                name: "Panagbenga",
+                icon: "🌼",
+                color: "#e0559c",
+                start: "2027-02-01",
+                end: "2027-03-07",
+                peak: "2027-02-28",
+                link: "http://127.0.0.1:5500/12th_Website/Calendar.html"
+            },
+            {
+                name: "Moriones",
+                icon: "🎭",
+                color: "#7a3e9d",
+                start: "2027-03-21",
+                end: "2027-03-28",
+                peak: "2027-03-28",
+                link: "http://127.0.0.1:5500/12th_Website/Calendar.html"
+            },
+            {
+                name: "Pahiyas",
+                icon: "🌾",
+                color: "#2f9e44",
+                start: "2027-05-13",
+                end: "2027-05-15",
+                peak: "2027-05-15",
+                link: "http://127.0.0.1:5500/12th_Website/Calendar.html"
+            },
+            {
+                name: "Kadayawan",
+                icon: "🌺",
+                color: "#f28c00",
+                start: "2027-08-13",
+                end: "2027-08-22",
+                peak: "2027-08-22",
+                link: "http://127.0.0.1:5500/12th_Website/Calendar.html"
+            },
+            {
+                name: "MassKara",
+                icon: "😊",
+                color: "#0b7285",
+                start: "2027-10-01",
+                end: "2027-10-24",
+                peak: "2027-10-17",
+                link: "http://127.0.0.1:5500/12th_Website/Calendar.html"
+            }
+        ];
+
+        const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        const weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+        let month = 0;
+
+        function drawCalendar()
+        {
+            const firstDay = new Date(Date.UTC(2027, month, 1)).getUTCDay();
+            const dayCount = new Date(Date.UTC(2027, month + 1, 0)).getUTCDate();
+            const monthText = String(month + 1).padStart(2, "0");
+            let html = "";
+
+            weekDays.forEach((name) =>
+            {
+                html += `<div class="WeekDay">${name}</div>`;
+            });
+
+            for (let i = 0; i < firstDay; i++)
+            {
+                html += `<div class="Day DayEmpty"></div>`;
+            }
+
+            for (let day = 1; day <= dayCount; day++)
+            {
+                const date = `2027-${monthText}-${String(day).padStart(2, "0")}`;
+                let marks = "";
+
+                festivals.forEach((festival) =>
+                {
+                    if (date < festival.start || date > festival.end)
+                    {
+                        return;
+                    }
+
+                    if (date === festival.peak)
+                    {
+                        marks += `<a class="Chip" href="${festival.link}" style="border-color: ${festival.color}">${festival.icon}<span class="ChipName"> ${festival.name}</span></a>`;
+                    }
+                });
+
+                html += `<div class="Day"><div class="DayNumber">${day}</div>${marks}</div>`;
+            }
+
+            document.getElementById("CalendarGrid").innerHTML = html;
+            document.getElementById("MonthTitle").textContent = `${monthNames[month]} 2027`;
+        }
+
+        document.getElementById("PrevButton").addEventListener("click", () =>
+        {
+            month = (month + 11) % 12;
+            drawCalendar();
+        });
+
+        document.getElementById("NextButton").addEventListener("click", () =>
+        {
+            month = (month + 1) % 12;
+            drawCalendar();
+        });
+
+        drawCalendar();
+    </script>
+</body>
+</html>

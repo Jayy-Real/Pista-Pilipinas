@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>History</title>
+
+    <style>
+        body
+        {
+            font-family: sans-serif;
+            background-color: #0e1626;
+        }
+
+        nav
+        {
+            display: flex;
+            border-bottom: 1px solid #25344f;
+        }
+
+        nav a
+        {
+            padding: 15px;
+        }
+
+        nav a:hover
+        {
+            color: #eef2f7;
+            background-color: rgba(159, 176, 200, 0.3);
+            border-radius: 64px;
+            transform: translateY(-5px);
+            transition-property: transform;
+            transition-duration: 450ms;
+            transition-timing-function: ease;
+        }
+
+        #HeaderH1:hover
+        {
+            transform: rotate(-10deg) scale(1.5);
+            transition-property: transform;
+            transition-duration: 450ms;
+            transition-timing-function: ease;
+        }
+
+        a
+        {
+            text-decoration: none;
+            color: #9fb0c8;
+        }
+
+        main
+        {
+            margin: 5px 400px 5px 400px;
+            height: 100vh;
+            animation: appear 0.5s ease;
+        }
+
+        @keyframes appear 
+        {
+            from 
+            {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to 
+            {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        p
+        {
+            max-width: 700px; 
+            font-style: italic; 
+            line-height: 2;
+        }
+
+        footer
+        {
+            color: #eef2f7;
+            padding: 20px 10px 10px 10px;
+            border-top: 1px solid #25344f;
+            text-align:center;
+        }
+
+        .HistorySection
+        {
+            border-radius: 12px;
+            width: 530px;
+            height: 790px;
+            background-color: #162238;
+            margin: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .HistorySection:hover
+        {
+            transform: translateY(-5px);
+            transition: transform 500ms ease;
+        }
+
+        #SectionContainer
+        {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .InsideHistory
+        {
+            margin: 0px 20px 10px 20px; 
+            height: 680px; 
+            display: flow-root;
+        }
+
+        li
+        {
+            color:#eef2f7;
+            margin-left: 20px;
+            line-height: 1.5;
+        }
+
+        #Timeline
+        {
+            display: flex;
+            flex-direction: column;
+            width: 4px;
+            height: 690px;
+            background-color: #25344f;
+            border-radius: 12px;
+        }
+
+        .Line
+        {
+            margin-left: 10px;
+            width: 490px;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .Line:hover
+        {
+            transform: translateX(4px);
+            transition: transform 500ms ease;
+        }
+
+        nav .ActiveLink
+        {
+            color: #eef2f7;
+            background-color: rgba(159, 176, 200, 0.3);
+            border-radius: 64px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <section style="display: flex; justify-content: flex-start; margin-right: auto;">
+                <h1 style="color: white; margin: 5px 0px 5px 5px;">Pista</h1><h1 ID="HeaderH1" style="color: #d62839; margin: 5px 5px 5px 0px;">Pilipinas</h1>
+            </section>
+
+            <a href="http://127.0.0.1:5500/12th_Website/Main.html">Home</a>
+            <a href="http://127.0.0.1:5500/12th_Website/Calendar.html">Calendar</a>
+            <a href="http://127.0.0.1:5500/12th_Website/Festival.html">Festivals</a>
+            <a class="ActiveLink" href="http://127.0.0.1:5500/12th_Website/History.html">History</a>
+            <a href="http://127.0.0.1:5500/12th_Website/Gallery.html">Gallery</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2 style="color: #eef2f7;">History & culture</h2>
+        <p style="color: #eef2f7d5;">
+            A pista is a town fiesta, and in the Philippines almost every one begins with faith, a harvest, or a hard-won recovery. 
+            These festivals show how Indigenous traditions, Spanish-era Catholicism and local resilience blend into the countrys 
+            loudest, most colorful celebrations.
+        </p>
+        <div ID="SectionContainer">
+            <section class="HistorySection">
+                <div class="InsideHistory">
+                    <h2 style="color: #eef2f7;">How each festival began</h2>
+                    
+                    <div ID="Timeline">
+                        <span class="Line" >
+                            <h4 style="color: #d62839d8; margin: 0px; text-decoration: underline;">1521 to 1980: Sinulog</h4>
+                            <p style=" color: #eef2f7d5;; margin-top: 5px;">
+                                Rooted in the 1521 gift of the Santo Niño image to Cebu’s queen. The sulog dance mimics a river’s flow, and the modern parade began in 1980.
+                            </p>
+                        </span>
+
+                        <span class="Line">
+                            <h4 style="color: #e0559c; margin: 0px; text-decoration: underline;">1995: Panagbenga</h4>
+                            <p style=" color: #eef2f7d5;; margin-top: 5px;">
+                                A Kankanaey word for a season of blossoming, launched to lift Baguio’s spirits after the 1990 earthquake.
+                            </p>
+                        </span >
+
+                        <span class="Line">
+                            <h4 style="color: #7a3e9d; margin: 0px; text-decoration: underline;">1807: Moriones</h4>
+                            <p style=" color: #eef2f7d5;; margin-top: 5px;">
+                                Recalls Longinus, the Roman centurion converted at the Crucifixion. Locals wear carved masks and armor, a tradition traced to at least 1807.
+                            </p>
+                        </span>
+
+                        <span class="Line">
+                            <h4 style="color: #2f9e44; margin: 0px; text-decoration: underline;">Spanish era: Pahiyas</h4>
+                            <p style=" color: #eef2f7d5;; margin-top: 5px;">
+                                Thanks San Isidro Labrador, patron of farmers, with houses decorated in kiping rice wafers, fruit and vegetables.
+                            </p>
+                        </span class="Line">
+
+                        <span class="Line">
+                            <h4 style="color: #f28c00; margin: 0px; text-decoration: underline;">1970 to 1988: Kadayawan</h4>
+                            <p style=" color: #eef2f7d5;; margin-top: 5px;">
+                                From dagayaw, a word of Davao’s Indigenous peoples for something valuable and magnificent. 
+                                It grew from the 1970 Apo Duwaling festival and was renamed in 1988.
+                            </p>
+                        </span>
+
+                        <span class="Line">
+                            <h4 style="color: #0b7285; margin: 0px; text-decoration: underline;">1980: MassKara</h4>
+                            <p style=" color: #eef2f7d5;; margin-top: 5px;">
+                                Born from a sugar-price crisis and a ferry tragedy, when Bacolod answered with smiling masks and dancing.
+                            </p>
+                        </span>
+                    </div>
+
+                </div>
+            </section>
+
+            <section class="HistorySection"> 
+                <div class="InsideHistory">
+                    <h2 style="color: #eef2f7d5;">Festival etiquette</h2>
+                    <li>Arrive early and book rooms months ahead.</li>
+                    <li>Bring water, sunscreen and a rain layer.</li>
+                    <li>Ask before photographing masked performers or devotees.</li>
+                    <li>Keep valuables close in dense crowds.</li>
+                </div>
+            </section>
+        </div>
+
+    </main>
+
+    <footer>© 2026 Jayy Incorporated. All Rights Reserved.</footer>
+</body>
+</html>
